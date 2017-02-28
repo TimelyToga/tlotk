@@ -1,7 +1,13 @@
 #include <iostream>
+#include "src/engine/Application.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    Application app;
+
+    app.initialize();
+    app.runMainGameLoop();
+    app.terminate();
+
     return 0;
 }
