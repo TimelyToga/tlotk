@@ -8,7 +8,7 @@
 class IRenderable
 {
     public:
-        void render();
+        virtual void render() {};
 };
 
 #endif //TLOTK_IRENDERABLE_H

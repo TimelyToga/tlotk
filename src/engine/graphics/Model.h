@@ -6,10 +6,14 @@
 #define TLOTK_MODEL_H
 
 
-#include <OpenGl/gl3.h>
+#include <OpenGL/gl3.h>
+#define __gl_h_
+#include <GLUT/glut.h>
 #include <vector>
 #include "../state/IRenderable.h"
 #include "Vertex.h"
+#include "Shader.h"
+
 
 class Model : public IRenderable
 {

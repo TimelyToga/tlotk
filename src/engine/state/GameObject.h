@@ -8,12 +8,15 @@
 
 #include "IRenderable.h"
 #include "IUpdatable.h"
+#include "../graphics/Model.h"
 
-class GameObject : public IUpdatable, public IRenderable
+class GameObject : public IUpdatable, public Model
 {
     public:
         GameObject();
         ~GameObject();
+
+        void render() override;
 
     private:
 

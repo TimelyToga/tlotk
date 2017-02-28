@@ -3,3 +3,8 @@
 //
 
 #include "GameObject.h"
+
+void GameObject::render()
+{
+    Model::easyDraw();
+}

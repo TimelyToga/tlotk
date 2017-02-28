@@ -8,7 +8,7 @@
 class IUpdatable
 {
     public:
-        void update();
+        virtual void update() {};
 };
 
 #endif //TLOTK_IUPDATABLE_H

@@ -36,7 +36,7 @@ void Application::runMainGameLoop()
 
     Model* model = new Model(vertices, indices, glm::vec3(1, 0, 0));
 
-    Shader shader("../src/engine/graphics/shader/simple.vertex", "../src/engine/graphics/shader/simple.frag");
+    Shader shader("../src/engine/graphics/shader/simple.vert", "../src/engine/graphics/shader/simple.frag");
 
     std::cout << "Game Looping..." << std::endl;
 
