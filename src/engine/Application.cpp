@@ -8,6 +8,9 @@ Application::Application()
 {
     gameState = new GameState();
     window = new Window(WIDTH, HEIGHT, "The Last of Their Kind");
+    camera = std::make_shared<Camera> (WIDTH, HEIGHT, 0.0f, 0.0f, 0.8f);
+
+    window->setCamera(camera);
 }
 
 Application::~Application()
@@ -40,18 +43,23 @@ void Application::runMainGameLoop()
 
     std::cout << "Game Looping..." << std::endl;
 
-    GLint mvp_handle = glGetUniformLocation(shader.getShaderProgram(), "MVP");
+    GLint m_handle = glGetUniformLocation(shader.getShaderProgram(), "M");
+    GLint vp_handle = glGetUniformLocation(shader.getShaderProgram(), "VP");
 
-    glm::mat4 mvp = glm::mat4();
-    glUniformMatrix4fv(mvp_handle, 1, GL_FALSE, &mvp[0][0]);
+    glm::mat4 vpMatrix = camera->getVPMatrix();
+    glm::mat4 mMatrix = model->getModelMatrix();
 
     while(!window->close())
     {
         window->clear();
 
+        camera->update();
+        vpMatrix = camera->getVPMatrix();
+
         // Render code
         shader.bind();
-        glUniformMatrix4fv(mvp_handle, 1, GL_FALSE, &mvp[0][0]);
+        glUniformMatrix4fv(m_handle, 1, GL_FALSE, &mMatrix[0][0]);
+        glUniformMatrix4fv(vp_handle, 1, GL_FALSE, &vpMatrix[0][0]);
         model->easyDraw();
         shader.unbind();
 

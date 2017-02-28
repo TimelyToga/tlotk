@@ -57,6 +57,7 @@ bool Window::initialize()
     // Set all other callbacks
     glfwSetKeyCallback(glfwWindow, Window::key_callback);
     glfwSetMouseButtonCallback(glfwWindow, Window::mouse_button_callback);
+    glfwSetScrollCallback(glfwWindow, Window::mouse_scroll_callback);
 
 
 //    // Makes sure all extensions will be exposed in GLEW and initialize GLEW.
@@ -115,6 +116,16 @@ void Window::setMouse(int button, bool value)
     mouse[button] = value;
 }
 
+void Window::setCamera(std::shared_ptr<Camera> camera)
+{
+    this->m_Camera = camera;
+}
+
+std::shared_ptr<Camera> Window::getCamera()
+{
+    return m_Camera;
+}
+
 
 // Callbacks
 void Window::error_callback(int error, const char *description)
@@ -139,4 +150,15 @@ void Window::mouse_button_callback(GLFWwindow *gwindow, int button, int action, 
     // Store the button
     Window* window = Window::getWindowPointer(gwindow);
     window->setMouse(button, action != GLFW_RELEASE);
+}
+
+void Window::mouse_scroll_callback(GLFWwindow *window, double xOffset, double yOffset)
+{
+    Window *u_Window = (Window *) glfwGetWindowUserPointer(window);
+
+    u_Window->getCamera()->handleMouseScroll((float) yOffset);
+
+    #ifdef PRINT_INPUT
+        std::cout << "Mouse Scroll Offsets: (" << xOffset << ", " << yOffset << std::endl;
+    #endif
 }

@@ -10,9 +10,10 @@
 #include "graphics/Shader.h"
 #include "state/GameState.h"
 #include "graphics/Window.h"
+#include "graphics/Camera.h"
 
-#define WIDTH 1600
-#define HEIGHT 800
+#define WIDTH 800
+#define HEIGHT 600
 
 class Application
 {
@@ -27,6 +28,7 @@ class Application
     private:
         GameState* gameState;
         Window* window;
+        std::shared_ptr<Camera> camera;
 };
 
 
