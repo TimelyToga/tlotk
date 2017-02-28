@@ -18,19 +18,20 @@ class Camera : public IUpdatable
     public:
         static constexpr float MIN_ZOOM = 0.10f;
         static constexpr float MAX_ZOOM = 2.69794e+09;
-        static constexpr float MIN_ZCOORD = 50.0f;
+        static constexpr float MIN_ZCOORD = 10.0f;
         static constexpr float MAX_ZCOORD = 2.69794e+09;
 
+        static constexpr float CAMERA_ZOOM_FACTOR = 0.005f;
 
         const float NEAR = -100.1f;
         const float FAR = 25.0f;
-        static constexpr float STARTING_Z_COORD  = 1001;
+        static constexpr float STARTING_Z_COORD  = 80;
 
         // CC --> Camera Clench
         static constexpr float CC_ALPHA = 0.02f;
         static constexpr float CC_BETA = 0.045f;
 
-        static constexpr float FOV = 150.f;
+        static constexpr float FOV = 120.f;
 
 
         Camera(float width, float height, float x, float y, float s_zoom);
@@ -56,6 +57,8 @@ class Camera : public IUpdatable
         glm::mat4& getViewMatrix();
 
         void update() override;
+
+        void handleMouseScroll(float offset);
 
     private:
         float screenWidth;

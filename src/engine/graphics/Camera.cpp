@@ -140,3 +140,8 @@ void Camera::update()
 //    position += calcDeltaCameraPos(targetPosition);
     regenViewMatrix();
 }
+
+void Camera::handleMouseScroll(float offset)
+{
+    relativeZoom(1 + offset * CAMERA_ZOOM_FACTOR);
+}
