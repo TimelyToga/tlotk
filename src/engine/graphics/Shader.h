@@ -5,7 +5,7 @@
 #ifndef TLOTK_SHADER_H
 #define TLOTK_SHADER_H
 
-#include <OpenGL/gl3.h>
+#include <OpenGL/gl.h>
 #include <string>
 #include <iostream>
 #include <vector>
