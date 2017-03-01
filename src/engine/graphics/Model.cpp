@@ -102,7 +102,7 @@ void Model::regenModelMatrix()
 void Model::regenRotationMatrix()
 {
     glm::mat4 id(1.0f);
-    rotationMatrix = glm::rotate(id, rotation, glm::vec3(0.0f, 0.0f, 1.0f)); // Around positive z
+    rotationMatrix = glm::rotate(id, rotation, glm::vec3(0.5f, 0.5f, 0.5f)); // Around positive z
 
     regenModelMatrix();
 }

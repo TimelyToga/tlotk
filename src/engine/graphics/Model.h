@@ -8,6 +8,7 @@
 #include <OpenGL/gl3.h>
 #include <GLUT/glut.h>
 #include <vector>
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "../state/IRenderable.h"

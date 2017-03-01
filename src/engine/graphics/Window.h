@@ -32,6 +32,7 @@ class Window
         static Window* getWindowPointer(GLFWwindow* gWindow);
 
         void setKey(int key, bool value);
+        bool getKey(int key);
         void setMouse(int button, bool value);
 
         void setCamera(std::shared_ptr<Camera> camera);
