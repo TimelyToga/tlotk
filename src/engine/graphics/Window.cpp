@@ -111,6 +111,11 @@ void Window::setKey(int key, bool value)
     keys[key] = value;
 }
 
+bool Window::getKey(int key)
+{
+    return keys[key];
+}
+
 void Window::setMouse(int button, bool value)
 {
     mouse[button] = value;
