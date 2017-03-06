@@ -4,12 +4,43 @@
 
 #include "GameState.h"
 
-GameState::GameState()
+GameState* GameState::instance = nullptr;
+
+GameState* GameState::create(std::shared_ptr<Window> _window)
 {
-    // Get everything started
+    instance = new GameState;
+    instance->window = _window;
+    return instance;
 }
 
-GameState::~GameState()
+GameState* GameState::get()
 {
+    if(!instance)
+    {
+        // Throw a fucking fit
+        std::cout << "ERROR: Cannot call GameState::get() before GameState::create(). Exiting." << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
+    return instance;
+}
+
+GameState::GameState(std::shared_ptr<Window> _window)
+{
+    this->window = _window;
+}
+
+bool GameState::keyPressed(int keyID)
+{
+    return window->getKey(keyID);
+}
+
+bool GameState::mouseButtonPressed(int mButtonID)
+{
+    return window->getMouse(mButtonID);
+}
+
+double GameState::getGLFWTime()
+{
+    return window->getGLFWTime();
 }

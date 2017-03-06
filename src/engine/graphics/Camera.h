@@ -6,9 +6,10 @@
 #define TLOTK_CAMERA_H
 
 #include <iostream>
-#include <glm/glm.hpp>
 #include "math.h"
+#include <glm/glm.hpp>
 #include "glm/gtc/matrix_transform.hpp"
+#include <OpenGL/gl3.h>
 
 
 #include "../state/IUpdatable.h"
@@ -59,6 +60,7 @@ class Camera : public IUpdatable
         void update() override;
 
         void handleMouseScroll(float offset);
+        void setViewPos(GLint viewPos_h);
 
     private:
         float screenWidth;

@@ -121,6 +121,11 @@ void Window::setMouse(int button, bool value)
     mouse[button] = value;
 }
 
+bool Window::getMouse(int button)
+{
+    return mouse[button];
+}
+
 void Window::setCamera(std::shared_ptr<Camera> camera)
 {
     this->m_Camera = camera;

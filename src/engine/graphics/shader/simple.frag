@@ -7,15 +7,15 @@ in vec3 Normal;
 
 out vec4 fragColor;
 
-uniform float t;
-uniform sampler2D tex;
+//uniform float t;
+//uniform sampler2D tex;
+uniform vec3 viewPos;
+uniform vec3 lightPos;
 
 void main() {
     // vec4 texColor = texture(tex, TexCoord);
     vec3 lightColor = vec3(1, 1, 1);
-
-    // Calculate lightPos
-    vec3 lightPos = vec3(30*cos(t)+50, 30*sin(t)+50, 20);
+    float specularStrength = 0.5f;
 
     float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * lightColor;
@@ -28,8 +28,14 @@ void main() {
     float diff = max(dot(norm, lightDir), 0.0);
     vec3 diffuse = diff * lightColor;
 
-    // A+D lighting
-    vec3 result = (ambient + diffuse) * VColor.rgb;
+    // Specular lighting
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+    vec3 specular = specularStrength * spec * lightColor;
+
+    // A+D+S lighting
+    vec3 result = (ambient + diffuse + specular) * VColor.rgb;
     fragColor = vec4(result, 1.0f);
 
     // if(texColor == vec4(0, 0, 0, 1)) {

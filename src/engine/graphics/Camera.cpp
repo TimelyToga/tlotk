@@ -134,14 +134,15 @@ void Camera::regenViewMatrix()
 
 void Camera::update()
 {
-//    // Update position
-//    glm::vec3 targetPosition = trackingObject->getPosition();
-//
-//    position += calcDeltaCameraPos(targetPosition);
     regenViewMatrix();
 }
 
 void Camera::handleMouseScroll(float offset)
 {
     relativeZoom(1 + offset * CAMERA_ZOOM_FACTOR);
+}
+
+void Camera::setViewPos(GLint viewPos_h)
+{
+    glUniform3f(viewPos_h, position.x, position.y, position.z);
 }
