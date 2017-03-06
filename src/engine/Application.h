@@ -12,6 +12,9 @@
 #include "graphics/Window.h"
 #include "graphics/Camera.h"
 
+#include "graphics/Mesh.h"
+#include "graphics/AbLayer.h"
+
 #define WIDTH 800
 #define HEIGHT 600
 
@@ -27,8 +30,10 @@ class Application
 
     private:
         GameState* gameState;
-        Window* window;
+        std::shared_ptr<Window> window;
         std::shared_ptr<Camera> camera;
+
+        std::vector<AbLayer*> layers;
 };
 
 

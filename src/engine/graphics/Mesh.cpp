@@ -3,6 +3,7 @@
 //
 
 #include "Mesh.h"
+#include "../state/GameState.h"
 
 Mesh::Mesh(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices, const glm::vec3 &centerOffset)
         : Model(vertices, indices, centerOffset)
@@ -10,7 +11,16 @@ Mesh::Mesh(const std::vector<Vertex> &vertices, const std::vector<unsigned int> 
 
 }
 
-Mesh Mesh::createMesh(const int xSize, const int ySize)
+void Mesh::update()
+{
+    // Rotate model if r
+    if(GameState::get()->keyPressed(79))
+    {
+        rotate(0.03);
+    }
+}
+
+Mesh* Mesh::createMesh(const int xSize, const int ySize)
 {
     glm::vec3 color = glm::vec3(0.9, 0.1, 0.0);
     std::vector<Vertex> vertices;
@@ -49,7 +59,7 @@ Mesh Mesh::createMesh(const int xSize, const int ySize)
             
             // Generate normals for both triangles 
             glm::vec3 n1 = calculateNormal(p1, p2, p3);
-            glm::vec3 n2 = calculateNormal(p3, p4, p2);
+            glm::vec3 n2 = calculateNormal(p3, p2, p4);
             
             // Create Triangle 1
             vertices.push_back(Vertex(p1, red, eT, n1));
@@ -58,8 +68,8 @@ Mesh Mesh::createMesh(const int xSize, const int ySize)
 
             // Create Triangle 2
             vertices.push_back(Vertex(p3, red, eT, n2));
-            vertices.push_back(Vertex(p4, red, eT, n2));
             vertices.push_back(Vertex(p2, red, eT, n2));
+            vertices.push_back(Vertex(p4, red, eT, n2));
         }
     }
 
@@ -71,7 +81,7 @@ Mesh Mesh::createMesh(const int xSize, const int ySize)
 
     float xCenter = (xSize / 2) * MESH_SIZE;
     float yCenter = (ySize / 2) * MESH_SIZE;
-    return Mesh(vertices, indices, glm::vec3(-xCenter,-yCenter, 0));
+    return new Mesh(vertices, indices, glm::vec3(-xCenter,-yCenter, 0));
 }
 
 int Mesh::meshVertIndex(int x, int y, int height)

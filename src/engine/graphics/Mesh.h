@@ -16,7 +16,9 @@ class Mesh : public Model
         Mesh(const std::vector<Vertex> &vertices, const std::vector<unsigned int> &indices,
              const glm::vec3 &centerOffset);
 
-        static Mesh createMesh(const int xSize, const int ySize);
+        static Mesh* createMesh(const int xSize, const int ySize);
+
+        void update() override;
 
     private:
         static int meshVertIndex(int x, int y, int height);

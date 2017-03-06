@@ -6,17 +6,24 @@
 #define TLOTK_GAMESTATE_H
 
 
+#include "../graphics/Window.h"
+
 /*
  * Holds all important game state needed during the game
  */
 class GameState
 {
+        std::shared_ptr<Window> window;
+        static GameState *instance;
+        GameState(std::shared_ptr<Window> _window = nullptr);
+
     public:
-        GameState();
-        ~GameState();
+        static GameState* create(std::shared_ptr<Window> _window);
+        static GameState* get();
 
-    private:
-
+        bool keyPressed(int keyID);
+        bool mouseButtonPressed(int mButtonID);
+        double getGLFWTime();
 };
 
 

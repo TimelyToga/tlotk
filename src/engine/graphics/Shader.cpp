@@ -103,7 +103,18 @@ GLuint Shader::getShaderProgram()
 
 GLint Shader::getShaderUniform(const GLchar* name)
 {
-    return glGetUniformLocation(m_Shader, name);
+    GLint location = glGetUniformLocation(m_Shader, name);
+    if(location >= -1)
+    {
+        #ifdef SHADER_UNIFORM_ERROR_PRINT
+                std::cout << "ERROR: Can't find uniform " << name << " in shaders:\n"
+                          << "location: " << location << "\n"
+                          << "V: " << vertexFile << "\n"
+                          << "F: " << fragmentFile << std::endl;
+        #endif
+    }
+
+    return location;
 }
 
 void Shader::bind() const

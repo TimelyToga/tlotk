@@ -4,7 +4,7 @@ project(tlotk)
 set(CMAKE_CXX_STANDARD 11)
 
 # Create executable
-set(SOURCE_FILES main.cpp src/engine/Application.cpp src/engine/Application.h src/engine/state/GameState.cpp src/engine/state/GameState.h src/engine/graphics/Window.cpp src/engine/graphics/Window.h src/engine/state/IRenderable.h src/engine/state/IUpdatable.h src/engine/state/GameObject.cpp src/engine/state/GameObject.h src/engine/graphics/Model.cpp src/engine/graphics/Model.h src/engine/graphics/Vertex.h src/engine/graphics/Shader.cpp src/engine/graphics/Shader.h src/engine/utils/FileUtils.h src/engine/utils/utils.h src/engine/graphics/Camera.cpp src/engine/graphics/Camera.h src/engine/graphics/Mesh.cpp src/engine/graphics/Mesh.h)
+set(SOURCE_FILES main.cpp src/engine/Application.cpp src/engine/Application.h src/engine/state/GameState.cpp src/engine/state/GameState.h src/engine/graphics/Window.cpp src/engine/graphics/Window.h src/engine/state/IRenderable.h src/engine/state/IUpdatable.h src/engine/state/GameObject.cpp src/engine/state/GameObject.h src/engine/graphics/Model.cpp src/engine/graphics/Model.h src/engine/graphics/Vertex.h src/engine/graphics/Shader.cpp src/engine/graphics/Shader.h src/engine/utils/FileUtils.h src/engine/utils/utils.h src/engine/graphics/Camera.cpp src/engine/graphics/Camera.h src/engine/graphics/Mesh.cpp src/engine/graphics/Mesh.h src/engine/graphics/AbLayer.cpp src/engine/graphics/AbLayer.h src/engine/utils/debug.h src/engine/utils/Spawner.cpp src/engine/utils/Spawner.h)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 

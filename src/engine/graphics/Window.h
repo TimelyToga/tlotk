@@ -34,6 +34,7 @@ class Window
         void setKey(int key, bool value);
         bool getKey(int key);
         void setMouse(int button, bool value);
+        bool getMouse(int button);
 
         void setCamera(std::shared_ptr<Camera> camera);
         std::shared_ptr<Camera> getCamera();

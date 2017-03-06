@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "../utils/debug.h"
 
 #include "../utils/utils.h"
 
@@ -18,7 +19,6 @@
 class Shader
 {
     public:
-
         static const GLuint POSITION_ATTR_INDEX  = 0;
         static const GLuint COLOR_ATTR_INDEX   = 1;
         static const GLuint TEXTURE_ATTR_INDEX = 2;

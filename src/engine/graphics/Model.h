@@ -14,9 +14,10 @@
 #include "../state/IRenderable.h"
 #include "Vertex.h"
 #include "Shader.h"
+#include "../state/IUpdatable.h"
 
 
-class Model : public IRenderable
+class Model : public IRenderable, public IUpdatable
 {
     protected:
         glm::vec2 direction = glm::vec2(1.0f, 0.0f);

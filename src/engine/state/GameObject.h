@@ -10,16 +10,20 @@
 #include "IUpdatable.h"
 #include "../graphics/Model.h"
 
-class GameObject : public IUpdatable, public Model
+class GameObject : public IUpdatable, public IRenderable
 {
     public:
-        GameObject();
-        ~GameObject();
+//        GameObject();
+//        ~GameObject();
 
         void render() override;
+        void update() override;
+
+        void setUniforms(GLint m_h);
+        void setModel(Model* _model);
 
     private:
-
+        Model *model;
 };
 
 
