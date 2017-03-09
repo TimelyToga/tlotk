@@ -6,7 +6,7 @@
 
 void GameObject::render()
 {
-    model->render();
+    model->easyDraw();
 }
 
 void GameObject::setUniforms(GLint m_h)
