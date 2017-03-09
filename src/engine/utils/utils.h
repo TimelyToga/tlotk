@@ -6,5 +6,7 @@
 #define TLOTK_UTILS_H
 
 #include "FileUtils.h"
+#include "PrintUtils.h"
+
 
 #endif //TLOTK_UTILS_H
