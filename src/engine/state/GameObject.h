@@ -13,7 +13,8 @@
 class GameObject : public IUpdatable, public IRenderable
 {
     public:
-//        GameObject();
+        GameObject();
+        GameObject(Model *m);
 //        ~GameObject();
 
         void render() override;

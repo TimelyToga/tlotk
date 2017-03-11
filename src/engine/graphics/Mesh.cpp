@@ -84,6 +84,45 @@ Mesh* Mesh::createMesh(const int xSize, const int ySize)
     return new Mesh(vertices, indices, glm::vec3(-xCenter,-yCenter, 0));
 }
 
+Mesh *Mesh::createMeshFromArray(const bool *objectDesign, const float squareSize,
+                                int gridX, int gridY, float xPos, float yPos, glm::vec3 color)
+{
+    std::vector<Vertex>* vertices = new std::vector<Vertex>();
+    std::vector<unsigned int> indices;
+
+    int numSquares = 0;
+    for(int x = 0; x < gridX; x++)
+    {
+        for(int y = 0; y < gridY; y++)
+        {
+            bool curSquare = objectDesign[meshVertIndex(x, y, gridY)];
+
+            if(curSquare)
+            {
+                // Construct a square
+                // Define UL corner of square.
+                float curX = squareSize * x;
+                float curY = squareSize * y;
+
+                createSquare(curX, curY, 0.0f, color, vertices);
+
+                numSquares++;
+            }
+        }
+    }
+
+    // Assemble indices (essentially wasted space for this situation)
+    for (unsigned int x = 0; x < vertices->size(); x++)
+    {
+        indices.push_back(x);
+    }
+
+    glm::vec3 position(xPos, yPos, 0);
+    glm::vec3 center((((float) -gridX) / 2) * squareSize, ((float) -gridY / 2) * squareSize, 0);
+
+    return new Mesh(*vertices, indices, center);
+}
+
 int Mesh::meshVertIndex(int x, int y, int height)
 {
     return x + y * height;
@@ -110,4 +149,30 @@ glm::vec3 Mesh::calculateNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
     n.z = (u.x * v.y) - (u.y * v.x);
 
     return n;
+}
+
+void Mesh::createSquare(float xPos, float yPos, float zPos, glm::vec3 color, std::vector<Vertex> *vertices)
+{
+    // Fake texture coordinates
+    glm::vec2 eT = glm::vec2(0, 0);
+
+    // Create unique points
+    glm::vec3 p1 = glm::vec3(xPos,             yPos,             zPos);
+    glm::vec3 p2 = glm::vec3(xPos + MESH_SIZE, yPos,             zPos);
+    glm::vec3 p3 = glm::vec3(xPos,             yPos + MESH_SIZE, zPos);
+    glm::vec3 p4 = glm::vec3(xPos + MESH_SIZE, yPos + MESH_SIZE, zPos);
+    
+    // Generate normals for both triangles 
+    glm::vec3 n1 = calculateNormal(p1, p2, p3);
+    glm::vec3 n2 = calculateNormal(p3, p2, p4);
+    
+    // Create Triangle 1
+    vertices->push_back(Vertex(p1, color, eT, n1));
+    vertices->push_back(Vertex(p2, color, eT, n1));
+    vertices->push_back(Vertex(p3, color, eT, n1));
+    
+    // Create Triangle 2
+    vertices->push_back(Vertex(p3, color, eT, n2));
+    vertices->push_back(Vertex(p2, color, eT, n2));
+    vertices->push_back(Vertex(p4, color, eT, n2));
 }

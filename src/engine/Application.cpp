@@ -31,20 +31,7 @@ void Application::initialize()
 
     Mesh *m = Mesh::createMesh(10, 10);
 
-    float xPos = 5.0f;
-    float yPos = 5.0f;
-    float zCoord = 10.1f;
-    float size = 20.0f;
-
-    const Vertex v1 = Vertex(glm::vec3(xPos,        yPos,        zCoord), glm::vec3(0.8f, 0.3f, 0.2f));
-    const Vertex v2 = Vertex(glm::vec3(xPos,        yPos + size, zCoord), glm::vec3(0.55f, 0.0f, 1.0f));
-    const Vertex v3 = Vertex(glm::vec3(xPos + size, yPos + size, zCoord), glm::vec3(0.0f, 0.41f, 0.76f));
-    const Vertex v4 = Vertex(glm::vec3(xPos + size, yPos,        zCoord), glm::vec3(0.2f, 1.0f, 0.8f));
-
-//    Model *m = new Model({v1, v2, v3, v3, v4, v1}, {1, 2, 3, 2, 3, 4}, glm::vec3(0, 0, 0));
-
-    GameObject *go = new GameObject();
-    go->setModel(m);
+    GameObject *go = new GameObject(m);
     mainLayer->addGameObject(go);
 }
 
