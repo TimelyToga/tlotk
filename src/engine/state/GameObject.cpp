@@ -4,6 +4,16 @@
 
 #include "GameObject.h"
 
+GameObject::GameObject()
+{
+
+}
+
+GameObject::GameObject(Model *m)
+{
+    setModel(m);
+}
+
 void GameObject::render()
 {
     model->easyDraw();
@@ -22,6 +32,7 @@ void GameObject::setModel(Model *_model)
 void GameObject::update()
 {
     // TODO: Update model (for transformable models)
+    model->update();
 
     // TODO: Update GameObject itself (Physics, game logic, etc)
 }

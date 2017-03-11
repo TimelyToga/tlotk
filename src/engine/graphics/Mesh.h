@@ -7,6 +7,8 @@
 
 
 #include "Model.h"
+#include <vector>
+
 
 class Mesh : public Model
 {
@@ -17,12 +19,15 @@ class Mesh : public Model
              const glm::vec3 &centerOffset);
 
         static Mesh* createMesh(const int xSize, const int ySize);
+        static Mesh* createMeshFromArray(const bool *objectDesign, const float squareSize,
+                                         int gridX, int gridY, float xPos, float yPos, glm::vec3 color);
 
         void update() override;
 
     private:
         static int meshVertIndex(int x, int y, int height);
         static glm::vec3 calculateNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
+        static void createSquare(float xPos, float yPos, float zPos, glm::vec3 color, std::vector<Vertex> *vertices);
 };
 
 
