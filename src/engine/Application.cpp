@@ -29,7 +29,15 @@ void Application::initialize()
                                      camera);
     layers.push_back(mainLayer);
 
-    Mesh *m = Mesh::createMesh(10, 10);
+    glm::vec3 red(1, 1, 0);
+    bool objectDesign[100] = {0};`
+
+    objectDesign[1] = true;
+    objectDesign[3] = true;
+    objectDesign[4] = true;
+    objectDesign[5] = true;
+    objectDesign[7] = true;
+    Mesh *m = Mesh::createMeshFromArray(objectDesign, 10.0f, 3, 3, 0.0f, 0.0f, red);
 
     GameObject *go = new GameObject(m);
     mainLayer->addGameObject(go);
