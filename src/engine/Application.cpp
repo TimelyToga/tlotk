@@ -30,7 +30,7 @@ void Application::initialize()
     layers.push_back(mainLayer);
 
     glm::vec3 red(1, 1, 0);
-    bool objectDesign[100] = {0};`
+    bool objectDesign[100] = {0};
 
     objectDesign[1] = true;
     objectDesign[3] = true;
@@ -41,6 +41,10 @@ void Application::initialize()
 
     GameObject *go = new GameObject(m);
     mainLayer->addGameObject(go);
+
+#ifdef WIREFRAME
+    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+#endif
 }
 
 void Application::runMainGameLoop()

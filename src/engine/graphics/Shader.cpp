@@ -104,7 +104,7 @@ GLuint Shader::getShaderProgram()
 GLint Shader::getShaderUniform(const GLchar* name)
 {
     GLint location = glGetUniformLocation(m_Shader, name);
-    if(location >= -1)
+    if(location < 0)
     {
         #ifdef SHADER_UNIFORM_ERROR_PRINT
                 std::cout << "ERROR: Can't find uniform " << name << " in shaders:\n"
