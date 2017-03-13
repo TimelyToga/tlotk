@@ -10,6 +10,7 @@
 #ifdef DEBUG
     // Logging
     #define SHADER_UNIFORM_ERROR_PRINT
+    #define WIREFRAME
 #endif
 
 #endif //TLOTK_DEBUG_H
