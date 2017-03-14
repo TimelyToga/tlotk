@@ -31,6 +31,7 @@ class Player : public GameObject
         Player(const float xPos, const float yPos, std::shared_ptr<Window> window);
 
         void update() override;
+        Model* getModel();
 
         // Resource actions
 //        void addResource(const ResourceBundle &other);

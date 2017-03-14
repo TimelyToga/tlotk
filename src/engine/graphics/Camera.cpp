@@ -134,6 +134,13 @@ void Camera::regenViewMatrix()
 
 void Camera::update()
 {
+    if(trackingModel)
+    {
+        // Update camera position
+        position.x = trackingModel->getPosition().x;
+        position.y = trackingModel->getPosition().y;
+    }
+
     regenViewMatrix();
 }
 
@@ -145,4 +152,9 @@ void Camera::handleMouseScroll(float offset)
 void Camera::setViewPos(GLint viewPos_h)
 {
     glUniform3f(viewPos_h, position.x, position.y, position.z);
+}
+
+void Camera::setTrackingModel(Model *model)
+{
+    trackingModel = model;
 }

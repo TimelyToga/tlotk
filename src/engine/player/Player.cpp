@@ -149,3 +149,8 @@ void Player::engageLaser(bool engaged)
 {
     laserEngaged = engaged;
 }
+
+Model *Player::getModel()
+{
+    return model;
+}
