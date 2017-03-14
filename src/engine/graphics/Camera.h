@@ -13,6 +13,7 @@
 
 
 #include "../state/IUpdatable.h"
+#include "Model.h"
 
 class Camera : public IUpdatable
 {
@@ -61,6 +62,7 @@ class Camera : public IUpdatable
 
         void handleMouseScroll(float offset);
         void setViewPos(GLint viewPos_h);
+        void setTrackingModel(Model *model);
 
     private:
         float screenWidth;
@@ -72,10 +74,11 @@ class Camera : public IUpdatable
         glm::mat4 perspectiveMatrix;
         glm::mat4 viewMatrix;
 
-
         // Generating Matrices
         void regenPerspectiveMatrix();
         void regenViewMatrix();
+
+        Model* trackingModel;
 
 };
 

@@ -43,6 +43,7 @@ void Application::initialize()
     GameObject *go = new GameObject(m);
 
     Player *player = new Player(0, 0, window);
+    camera->setTrackingModel(player->getModel());
 
     mainLayer->addGameObject(player);
     mainLayer->addGameObject(go);
