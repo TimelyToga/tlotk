@@ -3,6 +3,7 @@
 //
 
 #include "Application.h"
+#include "player/Player.h"
 
 Application::Application()
     : layers()
@@ -40,6 +41,10 @@ void Application::initialize()
     Mesh *m = Mesh::createMeshFromArray(objectDesign, 10.0f, 3, 3, 0.0f, 0.0f, red);
 
     GameObject *go = new GameObject(m);
+
+    Player *player = new Player(0, 0, window);
+
+    mainLayer->addGameObject(player);
     mainLayer->addGameObject(go);
 
 #ifdef WIREFRAME

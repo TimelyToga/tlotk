@@ -81,6 +81,11 @@ void Model::unbind()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+glm::vec2 Model::getDirection()
+{
+    return direction;
+}
+
 glm::mat4 &Model::getModelMatrix()
 {
     return modelMatrix;
@@ -165,5 +170,11 @@ void Model::rotate(float angleDelta)
     auto newY = sin(rotation);
 
     direction = glm::vec2(newX, newY);
+    regenRotationMatrix();
+}
+
+void Model::update()
+{
+    regenTranslationMatrix();
     regenRotationMatrix();
 }
