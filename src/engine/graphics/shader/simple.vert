@@ -56,8 +56,8 @@ float pNoise(vec2 p, int res){
 }
 
 void main() {
-    vec2 nVec = vec2(vertex_position_model_space.x + t, vertex_position_model_space.y + t);
-    float zcoord = pNoise(nVec, 1);
+    // vec2 nVec = vec2(vertex_position_model_space.x + t, vertex_position_model_space.y + t);
+    float zcoord = 0; // pNoise(nVec, 1);
     gl_Position = VP * M * vec4(vertex_position_model_space.x,
                                 vertex_position_model_space.y + zcoord,
                                 vertex_position_model_space.z, 1.0f);

@@ -23,7 +23,7 @@ class GameObject : public IUpdatable, public IRenderable
         void setUniforms(GLint m_h);
         void setModel(Model* _model);
 
-    private:
+    protected:
         Model *model;
 };
 

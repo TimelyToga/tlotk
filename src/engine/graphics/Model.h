@@ -35,6 +35,7 @@ class Model : public IRenderable, public IUpdatable
 
         glm::mat4 &getModelMatrix();
         glm::vec3 getPosition();
+        glm::vec2 getDirection();
 
         // Matrix Creation
         void regenModelMatrix();
@@ -52,6 +53,8 @@ class Model : public IRenderable, public IUpdatable
         void setRotation(float newAngle);
         void initializeRotation(float initialAngle);
         void rotate(float angleDelta);
+
+        void update() override;
 
     private:
         GLuint vao;
