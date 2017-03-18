@@ -20,7 +20,7 @@ class GameObject : public IUpdatable, public IRenderable
         void render() override;
         void update() override;
 
-        void setUniforms(GLint m_h);
+        virtual void setUniforms(GLint m_h);
         void setModel(Model* _model);
 
     protected:

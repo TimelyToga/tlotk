@@ -10,11 +10,12 @@ out vec4 fragColor;
 //uniform sampler2D tex;
 uniform vec3 viewPos;
 uniform vec3 lightPos;
+uniform vec3 lightColor;
 
 void main() {
     // vec4 texColor = texture(tex, TexCoord);
-    vec3 lightColor = vec3(1, 1, 1);
-    float specularStrength = 0.5f;
+//    vec3 lightColor = vec3(0.65, 1, 1);
+    float specularStrength = 0.1f;
 
     float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * lightColor;

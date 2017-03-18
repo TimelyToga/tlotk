@@ -33,6 +33,8 @@ class Player : public GameObject
         void update() override;
         Model* getModel();
 
+        void setUniforms(GLint m_h) override;
+
         // Resource actions
 //        void addResource(const ResourceBundle &other);
 //        void removeResource(const ResourceBundle &other);
@@ -50,12 +52,20 @@ class Player : public GameObject
         void powerThrusters(bool forward, float power);
         void engageLaser(bool engaged);
 
+        // Physics
         glm::vec2 force;
         glm::vec2 acceleration;
         glm::vec2 velocity;
 
-
         glm::vec2 laserPositionOffset;
+
+        // Light variables
+        glm::vec3 lightPos;
+        glm::vec3 lightColor;
+        GLint lightPos_h;
+        GLint lightDir_h;
+        GLint lightAttenuation_h;
+        GLint lightColor_h;
 };
 
 
