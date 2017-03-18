@@ -30,17 +30,19 @@ void Application::initialize()
                                      camera);
     layers.push_back(mainLayer);
 
-    glm::vec3 red(1, 1, 0);
-    bool objectDesign[100] = {0};
-
-    objectDesign[1] = true;
-    objectDesign[3] = true;
-    objectDesign[4] = true;
-    objectDesign[5] = true;
-    objectDesign[7] = true;
-    Mesh *m = Mesh::createMeshFromArray(objectDesign, 10.0f, 3, 3, 0.0f, 0.0f, red);
+//    glm::vec3 red(1, 1, 0);
+//    bool objectDesign[100] = {0};
+//
+//    objectDesign[1] = true;
+//    objectDesign[3] = true;
+//    objectDesign[4] = true;
+//    objectDesign[5] = true;
+//    objectDesign[7] = true;
+//    Mesh *m = Mesh::createMeshFromArray(objectDesign, 10.0f, 3, 3, 0.0f, 0.0f, red);
+    Mesh* m = Mesh::createMesh(10, 10);
 
     GameObject *go = new GameObject(m);
+
 
     Player *player = new Player(0, 0, window);
     camera->setTrackingModel(player->getModel());

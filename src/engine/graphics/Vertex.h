@@ -19,7 +19,7 @@ struct Vertex
         this->v = glm::vec3(vx, vy, vz);
         this->c = glm::vec3(cx, cy, cz);
         this->t = glm::vec2(0.0f, 0.0f);
-        this->n = glm::vec3(0.0f, 0.0f, 0.0f);
+        this->n = glm::vec3(0.0f, 0.0f, 1.0f);
     }
 
     Vertex(glm::vec3 p_v, glm::vec3 p_c)
@@ -27,7 +27,7 @@ struct Vertex
         this->v = p_v;
         this->c = p_c;
         this->t = glm::vec2(0.0f, 0.0f);
-        this->n = glm::vec3(0.0f, 0.0f, 0.0f);
+        this->n = glm::vec3(0.0f, 0.0f, 1.0f);
     }
 
     Vertex(glm::vec3 p_v, glm::vec3 p_c, glm::vec2 p_t, glm::vec3 p_n)

@@ -109,6 +109,8 @@ Window *Window::getWindowPointer(GLFWwindow *gWindow)
 void Window::setKey(int key, bool value)
 {
     keys[key] = value;
+
+    std::cout << key << std::endl;
 }
 
 bool Window::getKey(int key)

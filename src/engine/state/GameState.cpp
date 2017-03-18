@@ -44,3 +44,13 @@ double GameState::getGLFWTime()
 {
     return window->getGLFWTime();
 }
+
+void GameState::setUniform(std::string name, GLint handle)
+{
+    this->uniforms[name] = handle;
+}
+
+GLint GameState::getUniform(std::string name)
+{
+    return uniforms[name];
+}

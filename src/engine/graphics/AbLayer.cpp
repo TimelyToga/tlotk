@@ -21,9 +21,14 @@ AbLayer::AbLayer(const char *vertexShaderFilename, const char *fragmentShaderFil
     // Initialize Uniforms
     m_h             = shader->getShaderUniform("M");
     vp_h            = shader->getShaderUniform("VP");
+
     lightPos_h      = shader->getShaderUniform("lightPos");
+    GameState::get()->setUniform(GameState::LIGHT_POS_H, lightPos_h);
+
     viewPos_h       = shader->getShaderUniform("viewPos");
-    t_h             = glGetUniformLocation(shader->getShaderProgram(), "t");
+    t_h             = shader->getShaderUniform("t");
+    lightColor_h    = shader->getShaderUniform("lightColor");
+    GameState::get()->setUniform(GameState::LIGHT_COLOR_H, lightColor_h);
 //    texSample_h     = shader->getShaderUniform("tex");
 }
 
@@ -67,7 +72,7 @@ void AbLayer::render()
     {
         glUniformMatrix4fv(vp_h, 1, GL_FALSE, &vpMatrix[0][0]);
         camera->setViewPos(viewPos_h);
-        glUniform3f(lightPos_h, 0, 0, 25 * (float) sin(GameState::get()->getGLFWTime()) + 30);
+//        glUniform3f(lightPos_h, 0, 0, 25 * (float) sin(GameState::get()->getGLFWTime()) + 30);
         glUniform1f(t_h, (float) GameState::get()->getGLFWTime());
 //        glUniform1i(texSample_h, 0); // This just needs to be reset to 0 for every GO?
 

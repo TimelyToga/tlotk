@@ -37,6 +37,7 @@ class AbLayer : public IUpdatable, public IRenderable
         GLint lightPos_h;
         GLint viewPos_h;
         GLint texSample_h;
+        GLint lightColor_h;
 
 };
 
