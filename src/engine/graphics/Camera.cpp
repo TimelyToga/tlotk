@@ -22,7 +22,7 @@ Camera::~Camera()
 
 glm::vec3 Camera::getPosition()
 {
-    return glm::vec3();
+    return position;
 }
 
 void Camera::setPosition(glm::vec3 newPos)

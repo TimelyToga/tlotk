@@ -8,12 +8,13 @@
 #include <iostream>
 #include "graphics/Model.h"
 #include "graphics/Shader.h"
-#include "state/GameState.h"
 #include "graphics/Window.h"
 #include "graphics/Camera.h"
-
 #include "graphics/Mesh.h"
 #include "graphics/AbLayer.h"
+
+#include "state/GameState.h"
+#include "state/MousePicker.h"
 
 #define WIDTH 800
 #define HEIGHT 600
@@ -34,6 +35,8 @@ class Application
         std::shared_ptr<Camera> camera;
 
         std::vector<AbLayer*> layers;
+        MousePicker* mPicker;
+        GameObject* mouseFollower;
 };
 
 

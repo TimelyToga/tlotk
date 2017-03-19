@@ -125,6 +125,8 @@ void Model::setPosition(float p_x, float p_y)
 {
     this->position.x = p_x;
     this->position.y = p_y;
+
+    regenModelMatrix();
 }
 
 void Model::translatePosition(float xDelta, float yDelta)

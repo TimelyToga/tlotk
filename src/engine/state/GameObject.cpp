@@ -36,3 +36,21 @@ void GameObject::update()
 
     // TODO: Update GameObject itself (Physics, game logic, etc)
 }
+
+glm::vec3 GameObject::getPosition()
+{
+    if(model != nullptr){
+        return model->getPosition();
+    } else {
+        // TODO: Do something more obvious?
+        return glm::vec3();
+    }
+}
+
+void GameObject::setPosition(glm::vec3 position)
+{
+    if(model != nullptr)
+    {
+        model->setPosition(position.x, position.y);
+    }
+}

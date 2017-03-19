@@ -8,7 +8,7 @@
 
 #include "../graphics/Window.h"
 
-class MousePicker: public IUpdatable
+class MousePicker : public IUpdatable
 {
     public:
         MousePicker(std::shared_ptr<Window> p_window, std::shared_ptr<Camera> p_camera);
