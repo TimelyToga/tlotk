@@ -19,8 +19,6 @@ void main() {
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(lightPos - FragPos);
 
-//    float lightCutoffAngle = 0.55;
-
     // Spotlight calculations
     float theta = dot(lightDir, normalize(-spotDir));
     float specularStrength = 0.1f;
@@ -50,6 +48,14 @@ void main() {
 
         diffuse  *= attenuation;
         specular *= attenuation;
+
+        // Soft spotlight edges
+        float lightOuterCutoffAngle = 0.2555;
+        float epsilon   =  - lightOuterCutoffAngle - lightCutoffAngle;
+        float intensity = clamp((lightOuterCutoffAngle - theta) / epsilon, 0.0, 1.0);
+
+        diffuse  *= intensity;
+        specular *= intensity;
 
         // A+D+S lighting
         vec3 result = (ambientLight + diffuse + specular) * VColor.rgb;
