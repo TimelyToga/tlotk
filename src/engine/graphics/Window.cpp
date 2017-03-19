@@ -10,7 +10,9 @@ Window::Window(const int width, const int height, const char *title)
     this->HEIGHT = height;
     this->windowTitle = title;
     this->keys = new bool[KEYS];
+    std::fill_n(keys, KEYS, false);
     this->mouse = new bool[MOUSE];
+    std::fill_n(mouse, MOUSE, false);
 
     if(!initialize())
     {
@@ -109,8 +111,6 @@ Window *Window::getWindowPointer(GLFWwindow *gWindow)
 void Window::setKey(int key, bool value)
 {
     keys[key] = value;
-
-    std::cout << key << std::endl;
 }
 
 bool Window::getKey(int key)

@@ -5,6 +5,7 @@
 #include "GridSquare.h"
 
 GridSquare::GridSquare(int x, int y, GridGO* owner)
+        : rbundle()
 {
     this->gX = x;
     this->gY = y;
