@@ -60,6 +60,7 @@ bool Window::initialize()
     glfwSetKeyCallback(glfwWindow, Window::key_callback);
     glfwSetMouseButtonCallback(glfwWindow, Window::mouse_button_callback);
     glfwSetScrollCallback(glfwWindow, Window::mouse_scroll_callback);
+    glfwSetCursorPosCallback(glfwWindow, cursor_position_callback);
 
 
 //    // Makes sure all extensions will be exposed in GLEW and initialize GLEW.
@@ -138,6 +139,22 @@ std::shared_ptr<Camera> Window::getCamera()
     return m_Camera;
 }
 
+void Window::setMousePosition(int p_x, int p_y)
+{
+    mousePosition.x = p_x;
+    mousePosition.y = p_y;
+}
+
+glm::vec2 &Window::getMousePosition()
+{
+    return mousePosition;
+}
+
+glm::vec2 Window::getWindowSize()
+{
+    return glm::vec2(WIDTH, HEIGHT);
+}
+
 
 // Callbacks
 void Window::error_callback(int error, const char *description)
@@ -173,4 +190,18 @@ void Window::mouse_scroll_callback(GLFWwindow *window, double xOffset, double yO
     #ifdef PRINT_INPUT
         std::cout << "Mouse Scroll Offsets: (" << xOffset << ", " << yOffset << std::endl;
     #endif
+}
+
+void Window::cursor_position_callback(GLFWwindow *window, double xpos, double ypos)
+{
+    Window *u_Window = (Window *) glfwGetWindowUserPointer(window);
+
+    u_Window->setMousePosition((int) xpos, (int) ypos);
+
+#ifdef PRINT_INPUT
+    float ox = xpos / 500 - 1.0;
+        float oy = ypos / 300 - 1.0;
+//        std::cout << "Cursor Position: (" << xpos << ", " << ypos << std::endl;
+        std::cout << "Cursor Position: (" << ox << ", " << oy << std::endl;
+#endif
 }

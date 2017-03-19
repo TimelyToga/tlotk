@@ -39,6 +39,10 @@ class Window
         void setCamera(std::shared_ptr<Camera> camera);
         std::shared_ptr<Camera> getCamera();
 
+        // Mouse cursor position
+        glm::vec2 getWindowSize();
+        glm::vec2& getMousePosition();
+
     private:
         int WIDTH;
         int HEIGHT;
@@ -49,6 +53,10 @@ class Window
         bool* keys;
         bool* mouse;
 
+        // Mouse position
+        void setMousePosition(int p_x, int p_y);
+        glm::vec2 mousePosition;
+
         // Camera
         std::shared_ptr<Camera> m_Camera;
 
@@ -57,6 +65,7 @@ class Window
         static void key_callback(GLFWwindow* gwindow, int key, int scancode, int action, int mods);
         static void mouse_button_callback(GLFWwindow* gwindow, int button, int action, int mods);
         static void mouse_scroll_callback(GLFWwindow *window, double xOffset, double yOffset);
+        static void cursor_position_callback(GLFWwindow *window, double xpos, double ypos);
 
 };
 
