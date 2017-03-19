@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <cstdlib>
+#include "../graphics/Vertex.h"
 
 #define MAX_FILE_SIZE 10*1024*1024
 #define FDNE_ERROR -102
@@ -47,6 +48,18 @@ namespace utils
         std::string result(fileText);
         delete[] fileText;
         return result;
+    }
+
+    static std::vector<unsigned int> createIndiceArray(std::vector<Vertex> v)
+    {
+        std::vector<unsigned int> indices;
+
+        for(unsigned int a = 0; a < v.size(); a++)
+        {
+            indices.push_back(a);
+        }
+
+        return indices;
     }
 };
 

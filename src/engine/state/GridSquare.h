@@ -19,6 +19,9 @@ class GridSquare : public GameObject
 
         void update() override;
 
+        static std::vector<Vertex> createSquareVertices(glm::vec2 pos, float z, float size, glm::vec3 mColor);
+        static Model* createSquareModel(glm::vec2 pos, float z, float size, glm::vec3 mColor);
+
     private:
         // Local grid coordinates
         int gX;

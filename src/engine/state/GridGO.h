@@ -25,12 +25,12 @@ class GridGO : public GameObject
         GridGO(const float p_squareSize);
         ~GridGO();
 
-        void addSquare(GridSquare gsquare);
-        void addSquares(std::vector<GridSquare> gsquares);
+        void addSquare(GridSquare* gsquare);
+        void addSquares(std::vector<GridSquare*> gsquares);
         void clearSquares();
         GridSquare squareClosestTo(float x, float y);
 
-        static GridGO createFromArray(std::vector<bool> vertices, int xDim, int yDim, float sSize, glm::vec3 pos);
+        static GridGO* createFromArray(const bool *objectDesign, int xDim, int yDim, float sSize, glm::vec3 pos);
 
         void update() override;
         void render() override;
@@ -40,10 +40,10 @@ class GridGO : public GameObject
         glm::vec3 basePos;
         float squareSize;
 
-        std::vector<GridSquare> squares;
-        std::vector<GridSquare> updateList;
+        std::vector<GridSquare*> squares;
+        std::vector<GridSquare*> updateList;
 
-        void addToUpdateList(GridSquare gsquare);
+        void addToUpdateList(GridSquare* gsquare);
 
 };
 

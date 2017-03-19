@@ -4,6 +4,7 @@
 
 #include "Application.h"
 #include "player/Player.h"
+#include "state/GridGO.h"
 
 Application::Application()
     : layers()
@@ -30,16 +31,21 @@ void Application::initialize()
                                      camera);
     layers.push_back(mainLayer);
 
-//    glm::vec3 red(1, 1, 0);
-//    bool objectDesign[100] = {0};
-//
-//    objectDesign[1] = true;
-//    objectDesign[3] = true;
-//    objectDesign[4] = true;
-//    objectDesign[5] = true;
-//    objectDesign[7] = true;
-//    Mesh *m = Mesh::createMeshFromArray(objectDesign, 10.0f, 3, 3, 0.0f, 0.0f, red);
+    bool verts[9] = {0};
+    verts[1] = true;
+    verts[3] = true;
+    verts[4] = true;
+    verts[5] = true;
+
+//    GridSquare* gg = new GridSquare(0, 0, new GridGO(10.0));
+//    gg->setModel(GridSquare::createSquareModel(glm::vec3(0, 0, 0), -10, 10.0f, glm::vec3(1, 0, 0)));
+
+    GridGO* gg = GridGO::createFromArray(verts, 3, 3, 10.0f, glm::vec3(0, 0, 0));
+
+    mainLayer->addGameObject(gg);
+
     Mesh* m = Mesh::createMesh(10, 10);
+
 
     GameObject *go = new GameObject(m);
 
