@@ -27,7 +27,7 @@ class Camera : public IUpdatable
 
         const float NEAR = -100.1f;
         const float FAR = 25.0f;
-        static constexpr float STARTING_Z_COORD  = 80;
+        static constexpr float STARTING_Z_COORD  = 500;
 
         // CC --> Camera Clench
         static constexpr float CC_ALPHA = 0.02f;

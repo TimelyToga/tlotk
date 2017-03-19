@@ -46,6 +46,8 @@ Model::Model(std::vector<Vertex> vertices, std::vector<unsigned int> indices, gl
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glEnableVertexAttribArray(0);
+
+    regenModelMatrix();
 }
 
 Model::~Model()
