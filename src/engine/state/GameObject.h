@@ -22,6 +22,8 @@ class GameObject : public IUpdatable, public IRenderable
 
         virtual void setUniforms(GLint m_h);
         void setModel(Model* _model);
+        glm::vec3 getPosition();
+        void setPosition(glm::vec3 position);
 
     protected:
         Model *model;

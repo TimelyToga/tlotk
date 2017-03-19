@@ -15,6 +15,9 @@ MousePicker::MousePicker(std::shared_ptr<Window> p_window, std::shared_ptr<Camer
     viewMatrix = camera->getViewMatrix();
 }
 
+/*
+ * Will recalculate the mouse coordinates in world space so they can be used by the collider or whatever.
+ */
 void MousePicker::update()
 {
     // Camera may have moved since last frame
@@ -23,7 +26,7 @@ void MousePicker::update()
     recalculateCurRay();
 
     glm::vec3 surfaceNormal = glm::vec3(0, 0, -1);
-    glm::vec3 objectPos = glm::vec3(0, 0, 0);
+    glm::vec3 objectPos = glm::vec3(100, 0, 0);
     float radius = 10;
 
     float t = glm::dot(objectPos - camera->getPosition(), surfaceNormal) / glm::dot(currentRay, surfaceNormal);
@@ -38,10 +41,9 @@ void MousePicker::update()
         std::cout << "IN THE CIRLE" << std::endl;
     }
 
-//    std::cout << "curRay: (" << currentRay.x << " , " << currentRay.y << " , " << currentRay.z << ") t: " << t << std::endl;
-    std::cout << "interPoint: (" << interPoint.x << " , " << interPoint.y << " , " << interPoint.z << ") t: " << t << std::endl;
+    std::cout << "wordSpace: (" << interPoint.x << " , " << interPoint.y << " , " << interPoint.z << ") t: " << t << std::endl;
 
-    mouseCoords = interPoint;
+    this->mouseCoords = interPoint;
 }
 
 void MousePicker::recalculateCurRay()
@@ -54,6 +56,8 @@ void MousePicker::recalculateCurRay()
 
     currentRay = glm::vec3(worldSpace.x, worldSpace.y, worldSpace.z);
     currentRay = glm::normalize(currentRay);
+
+//    std::cout << "curRay: (" << currentRay.x << " , " << currentRay.y << " , " << currentRay.z << ")" << std::endl;
 }
 
 glm::vec2 MousePicker::calcNormDeviceCoords(glm::vec2 mousePos, glm::vec2 screenSize)

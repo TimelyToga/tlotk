@@ -11,6 +11,8 @@ Application::Application()
 {
     window = std::make_shared<Window> (WIDTH, HEIGHT, "The Last of Their Kind");
     camera = std::make_shared<Camera> (WIDTH, HEIGHT, 0.0f, 0.0f, 0.8f);
+    mPicker = new MousePicker(window, camera);
+
     gameState = GameState::create(window);
 
     window->setCamera(camera);
@@ -43,6 +45,8 @@ void Application::initialize()
     GridGO* gg = GridGO::createFromArray(verts, 3, 3, 10.0f, glm::vec3(0, 0, 0));
 
     mainLayer->addGameObject(gg);
+    mouseFollower = new GridSquare(0, 0, gg);
+    mouseFollower->setModel(GridSquare::createSquareModel(glm::vec3(0), 1, 25.0f, glm::vec3(1, 0, 0)));
 
     Mesh* m = Mesh::createMesh(10, 10);
 
@@ -55,6 +59,7 @@ void Application::initialize()
 
     mainLayer->addGameObject(player);
     mainLayer->addGameObject(go);
+    mainLayer->addGameObject(mouseFollower);
 
 #ifdef WIREFRAME
     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
@@ -72,6 +77,9 @@ void Application::runMainGameLoop()
 
         // Update
         camera->update();
+        mPicker->update();
+        mouseFollower->setPosition(mPicker->getMouseCoords());
+
         for(AbLayer* aLayer: layers)
         {
             aLayer->update();
