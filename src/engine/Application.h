@@ -11,7 +11,7 @@
 #include "graphics/Window.h"
 #include "graphics/Camera.h"
 #include "graphics/Mesh.h"
-#include "graphics/AbLayer.h"
+#include "graphics/layers/AbLayer.h"
 
 #include "state/GameState.h"
 #include "state/MousePicker.h"

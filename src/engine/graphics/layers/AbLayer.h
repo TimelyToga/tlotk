@@ -6,10 +6,10 @@
 #define TLOTK_ABLAYER_H
 
 
-#include "../state/GameObject.h"
-#include "../state/GameState.h"
-#include "Shader.h"
-#include "Camera.h"
+#include "../../state/GameObject.h"
+#include "../../state/GameState.h"
+#include "../Shader.h"
+#include "../Camera.h"
 
 class AbLayer : public IUpdatable, public IRenderable
 {
