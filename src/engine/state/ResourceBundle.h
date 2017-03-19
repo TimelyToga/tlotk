@@ -12,8 +12,8 @@
 class ResourceBundle
 {
     public:
-        ResourceBundle();
-        ~ResourceBundle();
+//        ResourceBundle();
+//        ~ResourceBundle();
 
         int getQuantity(Resource key);
         void addResource(Resource key, int quantity);

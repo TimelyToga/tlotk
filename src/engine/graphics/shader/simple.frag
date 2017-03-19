@@ -11,6 +11,7 @@ out vec4 fragColor;
 uniform vec3 viewPos;
 uniform vec3 lightPos;
 uniform vec3 lightColor;
+uniform vec3 lightDir;
 
 void main() {
     // vec4 texColor = texture(tex, TexCoord);
@@ -33,6 +34,16 @@ void main() {
     vec3 reflectDir = reflect(-lightDir, norm);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
     vec3 specular = specularStrength * spec * lightColor;
+
+    // Attenuation
+    float distance    = length(lightPos - FragPos);
+    float lconstant   = 1.0f;
+    float llinear     = 0.0014;
+    float lquad       = 0.000007;
+    float attenuation = 1.0f / (lconstant + llinear * distance + lquad * (distance * distance));
+
+    diffuse  *= attenuation;
+    specular *= attenuation;
 
     // A+D+S lighting
     vec3 result = (ambient + diffuse + specular) * VColor.rgb;

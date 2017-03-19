@@ -29,7 +29,7 @@ class GridSquare : public GameObject
 
         GridGO *owner;
 
-//        ResourceBundle rbundle;
+        ResourceBundle rbundle;
 };
 
 
