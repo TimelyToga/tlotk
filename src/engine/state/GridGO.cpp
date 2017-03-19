@@ -8,6 +8,9 @@ GridGO::GridGO(const float p_squareSize)
     : updateList()
 {
     this->squareSize = p_squareSize;
+
+    Model *myModel = new Model({}, {}, glm::vec3(0, 0, 0));
+    setModel(myModel);
 }
 
 GridGO::~GridGO()
@@ -17,20 +20,18 @@ GridGO::~GridGO()
 
 void GridGO::render()
 {
-    for(GridSquare g : squares)
+    for(GridSquare* g : squares)
     {
-        g.render();
+        g->render();
     }
 }
 
 void GridGO::update()
 {
-    GameObject::update();
-
     while(!updateList.empty())
     {
-        GridSquare curSquare = updateList.back();
-        curSquare.update();
+        GridSquare* curSquare = updateList.back();
+        curSquare->update();
         updateList.pop_back();
     }
 }
@@ -40,35 +41,60 @@ void GridGO::clearSquares()
     squares.clear();
 }
 
-void GridGO::addSquare(GridSquare gsquare)
+void GridGO::addSquare(GridSquare* gsquare)
 {
     squares.push_back(gsquare);
 }
 
-void GridGO::addSquares(std::vector<GridSquare> gsquares)
+void GridGO::addSquares(std::vector<GridSquare*> gsquares)
 {
-    for(GridSquare g : gsquares)
+    for(GridSquare* g : gsquares)
     {
         squares.push_back(g);
     }
 }
 
-void GridGO::addToUpdateList(GridSquare gsquare)
+void GridGO::addToUpdateList(GridSquare* gsquare)
 {
     updateList.push_back(gsquare);
 }
 
-GridGO GridGO::createFromArray(std::vector<bool> vertices, int xDim, int yDim, float sSize, glm::vec3 pos)
+GridGO* GridGO::createFromArray(const bool *objectDesign, int xDim, int yDim, float sSize, glm::vec3 pos)
 {
-    GridGO owner(sSize);
+    GridGO* owner = new GridGO(sSize);
 
     for(int x = 0; x < xDim; x++)
     {
         for(int y = 0; y < yDim; y++)
         {
-            if(vertices[x + y * yDim])
+            if(objectDesign[x + y * yDim])
             {
-                GridSquare curSquare(x, y, &owner);
+                GridSquare* curSquare = new GridSquare(x, y, owner);
+                glm::vec3 color(1, 1, 1);
+                glm::vec2 curPos(x * sSize, y*sSize);
+
+                int type = std::rand() % 3;
+
+                switch(type)
+                {
+                    case 0:
+                        color = glm::vec3(1, 0, 0);
+                        break;
+                    case 1:
+                        color = glm::vec3(0, 1, 0);
+                        break;
+                    case 2:
+                        color = glm::vec3(0, 0, 1);
+                        break;
+                    default:
+                        color = glm::vec3(1, 1, 1);
+                }
+
+                // Create a model
+                Model* squareModel = GridSquare::createSquareModel(curPos, pos.z, 10.0f, color);
+                curSquare->setModel(squareModel);
+
+                owner->addSquare(curSquare);
             }
         }
     }

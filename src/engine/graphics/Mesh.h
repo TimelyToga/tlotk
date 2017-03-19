@@ -30,7 +30,6 @@ class Mesh : public Model
 
     private:
         static int meshVertIndex(int x, int y, int height);
-        static glm::vec3 calculateNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3);
         static void createSquare(float xPos, float yPos, float zPos, glm::vec3 color, std::vector<Vertex> *vertices);
         static Resource generateResource();
 

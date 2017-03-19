@@ -70,8 +70,8 @@ Mesh* Mesh::createMesh(const int xSize, const int ySize)
             glm::vec3 p4 = glm::vec3(xPos + MESH_SIZE, yPos + MESH_SIZE, zValues[meshVertIndex(x+1, y+1, ySize)]);
             
             // Generate normals for both triangles 
-            glm::vec3 n1 = calculateNormal(p1, p2, p3);
-            glm::vec3 n2 = calculateNormal(p3, p2, p4);
+            glm::vec3 n1 = utils::calculateNormal(p1, p2, p3);
+            glm::vec3 n2 = utils::calculateNormal(p3, p2, p4);
             
             // Create Triangle 1
             vertices.push_back(Vertex(p1, mColor, eT, n1));
@@ -141,29 +141,6 @@ int Mesh::meshVertIndex(int x, int y, int height)
     return x + y * height;
 }
 
-glm::vec3 Mesh::calculateNormal(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
-{
-    /*
-     *  PSEUDO-CODE FROM (https://www.khronos.org/opengl/wiki/Calculating_a_Surface_Normal):
-     *  Set Vector U to (Triangle.p2 minus Triangle.p1)
-     *  Set Vector V to (Triangle.p3 minus Triangle.p1)
-     *
-     *  Set Normal.x to (multiply U.y by V.z) minus (multiply U.z by V.y)
-     *  Set Normal.y to (multiply U.z by V.x) minus (multiply U.x by V.z)
-     *  Set Normal.z to (multiply U.x by V.y) minus (multiply U.y by V.x)
-     */
-    glm::vec3 u = p2 - p1;
-    glm::vec3 v = p3 - p1; // maybe this is fine?
-
-    glm::vec3 n;
-
-    n.x = (u.y * v.z) - (u.z * v.y);
-    n.y = (u.z * v.x) - (u.x * v.z);
-    n.z = (u.x * v.y) - (u.y * v.x);
-
-    return n;
-}
-
 void Mesh::createSquare(float xPos, float yPos, float zPos, glm::vec3 color, std::vector<Vertex> *vertices)
 {
     // Fake texture coordinates
@@ -176,8 +153,8 @@ void Mesh::createSquare(float xPos, float yPos, float zPos, glm::vec3 color, std
     glm::vec3 p4 = glm::vec3(xPos + MESH_SIZE, yPos + MESH_SIZE, zPos);
     
     // Generate normals for both triangles 
-    glm::vec3 n1 = calculateNormal(p1, p2, p3);
-    glm::vec3 n2 = calculateNormal(p3, p2, p4);
+    glm::vec3 n1 = utils::calculateNormal(p1, p2, p3);
+    glm::vec3 n2 = utils::calculateNormal(p3, p2, p4);
     
     // Create Triangle 1
     vertices->push_back(Vertex(p1, color, eT, n1));

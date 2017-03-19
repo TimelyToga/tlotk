@@ -7,6 +7,6 @@
 
 #include "FileUtils.h"
 #include "PrintUtils.h"
-
+#include "VectorUtils.h"
 
 #endif //TLOTK_UTILS_H
