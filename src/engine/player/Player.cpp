@@ -14,8 +14,10 @@ Player::Player(const float xPos, const float yPos, std::shared_ptr<Window> windo
 
     lightPos_h = GameState::get()->getUniform(GameState::LIGHT_POS_H);
     lightColor_h = GameState::get()->getUniform(GameState::LIGHT_COLOR_H);
+    lightCutoffAngle_h = GameState::get()->getUniform(GameState::LIGHT_CUTOFF_ANGLE_H);
+    lightDirection_h = GameState::get()->getUniform(GameState::LIGHT_DIRECTION_H);
     lightColor = glm::vec3(1, 1, .87);
-    lightPos = glm::vec3(0, 0, 20);
+    lightPos = glm::vec3(0, 0, LIGHT_POS_Z);
 }
 
 void Player::update()
@@ -26,9 +28,25 @@ void Player::update()
     if(mWindow->getKey(GLFW_KEY_RIGHT)) model->rotate(-ROTATION_SPEED);
     if(mWindow->getKey(GLFW_KEY_UP)) powerThrusters(true, 1.0f);
     if(mWindow->getKey(GLFW_KEY_DOWN)) powerThrusters(false, 1.0f);
-    if(mWindow->getKey(GLFW_KEY_O))
-    {
+
+    // Light Pos
+    if(mWindow->getKey(GLFW_KEY_O)){
         this->lightPos.z += 1.0f;
+        std::cout << "z: " << lightPos.z << std::endl;
+    }
+    if(mWindow->getKey(GLFW_KEY_I)){
+        this->lightPos.z -= 1.0f;
+        std::cout << "z: " << lightPos.z << std::endl;
+    }
+
+    // Light cutoff angle
+    if(mWindow->getKey(GLFW_KEY_Z)){
+        this->lightCutoffAngle += 0.01f;
+        std::cout << "cangle: " << lightCutoffAngle << std::endl;
+    }
+    if(mWindow->getKey(GLFW_KEY_X)){
+        this->lightCutoffAngle -= 0.01f;
+        std::cout << "cangle: " << lightCutoffAngle << std::endl;
     }
 
     // Physics update 
@@ -78,7 +96,7 @@ std::vector<Vertex> Player::createPlayerVertices(float size)
     glm::vec3 playerColor   = glm::vec3(0.86f, 0.13f, 0.19f);
 
     // If anyone sees this--I'm deeply sorry. Don't ever do this
-    
+
     // Main Body
     const Vertex v1  = Vertex(glm::vec3(-m,          h,        0.0f), playerColor);
     const Vertex v2  = Vertex(glm::vec3(-m,         -h,        0.0f), playerColor);
@@ -179,7 +197,9 @@ void Player::setUniforms(GLint m_h)
     // Model matrix
     GameObject::setUniforms(m_h);
 
-    // Light position
+    // Light
     glUniform3f(lightPos_h, lightPos.x, lightPos.y, lightPos.z);
     glUniform3f(lightColor_h, lightColor.r, lightColor.g, lightColor.b);
+    glUniform3f(lightDirection_h, model->getDirection().x, model->getDirection().y, lightZAngle);
+    glUniform1f(lightCutoffAngle_h, lightCutoffAngle);
 }

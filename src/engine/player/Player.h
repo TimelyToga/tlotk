@@ -60,12 +60,16 @@ class Player : public GameObject
         glm::vec2 laserPositionOffset;
 
         // Light variables
+        float lightCutoffAngle = 0.26f;
+        float lightZAngle = -0.05f;
+        float LIGHT_POS_Z = 46.0f;
         glm::vec3 lightPos;
         glm::vec3 lightColor;
         GLint lightPos_h;
-        GLint lightDir_h;
         GLint lightAttenuation_h;
         GLint lightColor_h;
+        GLint lightCutoffAngle_h;
+        GLint lightDirection_h;
 };
 
 

@@ -18,6 +18,8 @@ class GameState
     public:
         static constexpr auto LIGHT_POS_H = "lightPos";
         static constexpr auto LIGHT_COLOR_H = "lightColor";
+        static constexpr auto LIGHT_CUTOFF_ANGLE_H = "lightCutoffAngle";
+        static constexpr auto LIGHT_DIRECTION_H = "spotDir";
 
     private:
         std::shared_ptr<Window> window;
