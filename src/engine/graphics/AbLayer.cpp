@@ -29,6 +29,13 @@ AbLayer::AbLayer(const char *vertexShaderFilename, const char *fragmentShaderFil
     t_h             = shader->getShaderUniform("t");
     lightColor_h    = shader->getShaderUniform("lightColor");
     GameState::get()->setUniform(GameState::LIGHT_COLOR_H, lightColor_h);
+
+    lightCutoffAngle_h = shader->getShaderUniform(GameState::LIGHT_CUTOFF_ANGLE_H);
+    GameState::get()->setUniform(GameState::LIGHT_CUTOFF_ANGLE_H, lightCutoffAngle_h);
+
+    lightDirection_h = shader->getShaderUniform(GameState::LIGHT_DIRECTION_H);
+    GameState::get()->setUniform(GameState::LIGHT_DIRECTION_H, lightDirection_h);
+
 //    texSample_h     = shader->getShaderUniform("tex");
 }
 
