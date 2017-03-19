@@ -5,15 +5,18 @@
 #ifndef TLOTK_GRIDSQUARE_H
 #define TLOTK_GRIDSQUARE_H
 
-
-#include "GameObject.h"
 #include "GridGO.h"
+#include "GameObject.h"
 #include "ResourceBundle.h"
+
+class GridGO;
 
 class GridSquare : public GameObject
 {
     public:
-        friend class GridGO;
+        GridSquare(int x, int y, GridGO* owner);
+        ~GridSquare();
+
         void update() override;
 
     private:
@@ -21,9 +24,9 @@ class GridSquare : public GameObject
         int gX;
         int gY;
 
-        GridGO owner;
+        GridGO *owner;
 
-        ResourceBundle rbundle;
+//        ResourceBundle rbundle;
 };
 
 

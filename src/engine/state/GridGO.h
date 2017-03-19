@@ -5,10 +5,11 @@
 #ifndef TLOTK_GRIDGO_H
 #define TLOTK_GRIDGO_H
 
-
-#include <queue>
-#include "GameObject.h"
 #include "GridSquare.h"
+#include <queue>
+#include <vector>
+#include <glm/vec3.hpp>
+#include "GameObject.h"
 
 /*
  * GridGOs is the base class for any Objects that are aligned on Grids. This
@@ -16,6 +17,8 @@
  *
  * IMPORTANT: GridGO should never have a model associated with it.
  */
+class GridSquare;
+
 class GridGO : public GameObject
 {
     public:
@@ -27,20 +30,20 @@ class GridGO : public GameObject
         void clearSquares();
         GridSquare squareClosestTo(float x, float y);
 
+        static GridGO createFromArray(std::vector<bool> vertices, int xDim, int yDim, float sSize, glm::vec3 pos);
+
         void update() override;
+        void render() override;
 
     private:
-
-        glm::vec3 position;
-
-
-        std::vector<GridSquare> squares;
-        std::deque<GridSquare> updateList;
-
+        // Position used by all squares
+        glm::vec3 basePos;
         float squareSize;
 
-        void addToUpdateList(GridSquare gsquare);
+        std::vector<GridSquare> squares;
+        std::vector<GridSquare> updateList;
 
+        void addToUpdateList(GridSquare gsquare);
 
 };
 
