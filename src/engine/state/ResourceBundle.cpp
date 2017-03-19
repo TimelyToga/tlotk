@@ -4,16 +4,6 @@
 
 #include "ResourceBundle.h"
 
-ResourceBundle::ResourceBundle()
-{
-
-}
-
-ResourceBundle::~ResourceBundle()
-{
-
-}
-
 int ResourceBundle::getQuantity(Resource key)
 {
     return resources[key];

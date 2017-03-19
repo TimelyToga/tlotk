@@ -11,7 +11,7 @@
 class MousePicker: public IUpdatable
 {
     public:
-        MousePicker(graphics::Window *p_window, std::shared_ptr<graphics::Camera> p_camera);
+        MousePicker(std::shared_ptr<Window> p_window, std::shared_ptr<Camera> p_camera);
 
         void update() override;
 
@@ -26,8 +26,8 @@ class MousePicker: public IUpdatable
 
         Model *selectedRenderable;
 
-        graphics::Window *window;
-        std::shared_ptr<graphics::Camera> camera;
+        std::shared_ptr<Window> window;
+        std::shared_ptr<Camera> camera;
 
         // Calculating World Space MouseRay
         void recalculateCurRay();

@@ -4,7 +4,7 @@
 
 #include "MousePicker.h"
 
-MousePicker::MousePicker(graphics::Window *p_window, std::shared_ptr<graphics::Camera> p_camera) :
+MousePicker::MousePicker(std::shared_ptr<Window> p_window, std::shared_ptr<Camera> p_camera) :
     currentRay(0, 0, 0),
     mouseCoords(0, 0, 0)
 {
