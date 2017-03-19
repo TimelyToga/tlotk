@@ -27,7 +27,10 @@ void main() {
     float ambientStrength = 0.2;
     vec3 ambientLight = ambientStrength * lightColor;
 
-    if(theta > lightCutoffAngle)
+    float lightOuterCutoffAngle = 0.225555;
+
+
+    if(theta > lightOuterCutoffAngle)
     {
         // Calculate diffuse lighting
         float diff = max(dot(norm, lightDir), 0.0);
@@ -50,7 +53,6 @@ void main() {
         specular *= attenuation;
 
         // Soft spotlight edges
-        float lightOuterCutoffAngle = 0.2555;
         float epsilon   =  - lightOuterCutoffAngle - lightCutoffAngle;
         float intensity = clamp((lightOuterCutoffAngle - theta) / epsilon, 0.0, 1.0);
 
