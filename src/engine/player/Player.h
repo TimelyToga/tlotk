@@ -61,7 +61,7 @@ class Player : public GameObject
 
         // Light variables
         float lightCutoffAngle = 0.26f;
-        float lightZAngle = -0.05f;
+        float lightZAngle = 0.05f;
         float LIGHT_POS_Z = 46.0f;
         glm::vec3 lightPos;
         glm::vec3 lightColor;
