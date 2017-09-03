@@ -35,6 +35,7 @@ void Application::initialize()
 
     bool verts[9] = {0};
     verts[1] = true;
+    verts[2] = true;
     verts[3] = true;
     verts[4] = true;
     verts[5] = true;
