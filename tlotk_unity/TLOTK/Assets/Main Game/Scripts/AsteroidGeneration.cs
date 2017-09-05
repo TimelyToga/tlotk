@@ -3,25 +3,35 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class AsteroidGeneration : MonoBehaviour
 {
-	private int CHUNK_SIZE = 10;
+	public int CHUNK_SIZE = 10;
 	private int X_SIZE, Y_SIZE;
-	private int SQUARE_SIZE = 50;
-	private Vector3[] vertices;
 
+	public int SQUARE_SIZE = 50;
+
+	private float RADIUS;
+	private Vector3[] vertices;
 	private Mesh mesh;
+
+	void Start() {
+		Debug.Log ("CREATING");
+	}
 
 	private void Awake() {
 		Generate ();
 	}
 
 	private void Generate() {
+		X_SIZE = CHUNK_SIZE;
+		Y_SIZE = CHUNK_SIZE;
+		RADIUS = X_SIZE;
+
+		float halfX = X_SIZE / 2.0f;
+		float halfY = Y_SIZE / 2.0f;
+
 		GetComponent<MeshFilter>().mesh = mesh = new Mesh();
 		mesh.name = "My First Grid";
 
-		X_SIZE = CHUNK_SIZE;
-		Y_SIZE = CHUNK_SIZE;
 		vertices = new Vector3[(X_SIZE + 1) * (Y_SIZE + 1)];
-		Debug.Log ("Verts have values");
 
 		for (int i = 0, y = 0; y <= Y_SIZE; y++) {
 			for (int x = 0; x <= X_SIZE; x++, i++) {
@@ -34,6 +44,8 @@ public class AsteroidGeneration : MonoBehaviour
 		int[] triangles = new int[X_SIZE * Y_SIZE * 6];
 		for (int ti = 0, vi = 0, y = 0; y < Y_SIZE; y++, vi++) {
 			for (int x = 0; x < X_SIZE; x++, ti += 6, vi++) {
+				if (Mathf.Pow((halfX - x), 2) + Mathf.Pow((halfY - y), 2) > RADIUS)
+					continue;
 				triangles[ti] = vi + X_SIZE + 2;
 				triangles[ti + 3] = triangles[ti + 2] = vi + 1;
 				triangles[ti + 4] = triangles[ti + 1] = vi + X_SIZE + 1;
@@ -43,19 +55,6 @@ public class AsteroidGeneration : MonoBehaviour
 
 		mesh.triangles = triangles;
 
-		transform.Rotate (0, 0, 0);
-
 		mesh.RecalculateNormals ();
-	}
-
-	private void OnDrawGizmos() {
-		if (vertices == null) {
-			return;
-		}
-
-		Gizmos.color = Color.red;
-		for (int i = 0; i < vertices.Length; i++) {
-			Gizmos.DrawSphere(vertices[i], 5.0f);
-		}
 	}
 }
