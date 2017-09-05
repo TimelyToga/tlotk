@@ -4,10 +4,12 @@ using System.Collections;
 public class FPSCounter : MonoBehaviour
 {
 	float deltaTime = 0.0f;
+	Vector3 pos = Vector3.zero;
 
 	void Update()
 	{
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+		pos = Camera.main.transform.position;
 	}
 
 	void OnGUI()
@@ -22,7 +24,8 @@ public class FPSCounter : MonoBehaviour
 		style.normal.textColor = new Color (1.0f, 1.0f, 1.0f, 1.0f);
 		float msec = deltaTime * 1000.0f;
 		float fps = 1.0f / deltaTime;
-		string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+		float xPos = pos.x;
+		string text = string.Format("{0:0.0} ms ({1:0.} fps)\n  ({1:0.}, {1:0.})", msec, fps, xPos, pos.y);
 		GUI.Label(rect, text, style);
 	}
 }
