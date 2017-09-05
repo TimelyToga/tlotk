@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class AsteroidGeneration : MonoBehaviour
 {
-	private int CHUNK_SIZE = 1;
+	private int CHUNK_SIZE = 10;
 	private int X_SIZE, Y_SIZE;
-	private int SQUARE_SIZE = 100;
+	private int SQUARE_SIZE = 50;
 	private Vector3[] vertices;
 
 	private Mesh mesh;
@@ -22,7 +22,7 @@ public class AsteroidGeneration : MonoBehaviour
 		Y_SIZE = CHUNK_SIZE;
 		vertices = new Vector3[(X_SIZE + 1) * (Y_SIZE + 1)];
 		Debug.Log ("Verts have values");
-	
+
 		for (int i = 0, y = 0; y <= Y_SIZE; y++) {
 			for (int x = 0; x <= X_SIZE; x++, i++) {
 				vertices[i] = new Vector3(x * SQUARE_SIZE, y * SQUARE_SIZE);
@@ -34,18 +34,18 @@ public class AsteroidGeneration : MonoBehaviour
 		int[] triangles = new int[X_SIZE * Y_SIZE * 6];
 		for (int ti = 0, vi = 0, y = 0; y < Y_SIZE; y++, vi++) {
 			for (int x = 0; x < X_SIZE; x++, ti += 6, vi++) {
-				triangles[ti] = vi;
+				triangles[ti] = vi + X_SIZE + 2;
 				triangles[ti + 3] = triangles[ti + 2] = vi + 1;
 				triangles[ti + 4] = triangles[ti + 1] = vi + X_SIZE + 1;
-				triangles[ti + 5] = vi + X_SIZE + 2;
+				triangles[ti + 5] = vi;
 			}
 		}
 
 		mesh.triangles = triangles;
 
-		transform.Rotate (0, 180, 0);
+		transform.Rotate (0, 0, 0);
 
-//		mesh.RecalculateNormals ();
+		mesh.RecalculateNormals ();
 	}
 
 	private void OnDrawGizmos() {
@@ -55,8 +55,7 @@ public class AsteroidGeneration : MonoBehaviour
 
 		Gizmos.color = Color.red;
 		for (int i = 0; i < vertices.Length; i++) {
-			Gizmos.DrawSphere(vertices[i], 1.0f);
+			Gizmos.DrawSphere(vertices[i], 5.0f);
 		}
 	}
 }
-
