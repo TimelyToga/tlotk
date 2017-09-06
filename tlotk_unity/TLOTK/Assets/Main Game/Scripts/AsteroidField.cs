@@ -11,15 +11,16 @@ public class AsteroidField : MonoBehaviour {
 
 	private int MAX_TRIES = 100;
 
+	public GameObject fieldContainer;
+	public List<GameObject> tileTypes;
+
 	// Use this for initialization
 	void Start () {
 
 		for (int x = 0; x < SIZE; x++) {
 			for (int y = 0; y < SIZE; y++) {
 				Debug.Log ("AA");
-				AsteroidGeneration a = new AsteroidGeneration ();
-				// a.Translate (new Vector3(x * 600.0f, y * 600.0f, 0.0f));
-				a.transform.SetParent (transform);
+				Asteroid a = new Asteroid ();
 			}
 		}
 	}
