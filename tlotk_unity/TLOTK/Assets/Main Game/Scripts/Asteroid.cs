@@ -1,16 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class AsteroidGeneration : MonoBehaviour
+public class Asteroid : MonoBehaviour
 {
 	public int CHUNK_SIZE = 10;
 	private int X_SIZE, Y_SIZE;
 
 	public int SQUARE_SIZE = 50;
+	public List<GameObject> tileTypes;
 
 	private float RADIUS;
 	private Vector3[] vertices;
 	private Mesh mesh;
+
 
 	void Start() {
 		Debug.Log ("CREATING");
