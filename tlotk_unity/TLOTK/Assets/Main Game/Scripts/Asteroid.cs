@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class Asteroid : MonoBehaviour
@@ -8,7 +9,6 @@ public class Asteroid : MonoBehaviour
 	private int X_SIZE, Y_SIZE;
 
 	public int SQUARE_SIZE = 50;
-	public List<GameObject> tileTypes;
 
 	private float RADIUS;
 	private Vector3[] vertices;

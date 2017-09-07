@@ -12,7 +12,6 @@ public class AsteroidField : MonoBehaviour {
 	private int MAX_TRIES = 100;
 
 	public GameObject fieldContainer;
-	public List<GameObject> tileTypes;
 
 	// Use this for initialization
 	void Start () {
