@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
 	public float SPEED_DECAY = 0.985f;
 	public float MASS = 10.0f;
 	public float THRUSTER_POWER = 100.0f;
+
+	public GameObject worldTiles;
 	 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +39,8 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		worldTiles.BroadcastMessage ("scan", transform.position);
+
 		// Update engine force
 		powerThrusters();
 
