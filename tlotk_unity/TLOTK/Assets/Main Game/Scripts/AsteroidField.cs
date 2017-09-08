@@ -19,7 +19,7 @@ public class AsteroidField : MonoBehaviour {
 		for (int x = 0; x < SIZE; x++) {
 			for (int y = 0; y < SIZE; y++) {
 				Debug.Log ("AA");
-				Asteroid a = new Asteroid ();
+				// Asteroid a = new Asteroid ();
 			}
 		}
 	}
