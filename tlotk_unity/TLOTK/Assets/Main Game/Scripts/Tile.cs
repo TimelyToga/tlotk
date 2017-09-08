@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour { 
+public class Tile { 
+
+	public GameObject sprite;
+	public ResourceStream resources;
 
 	// Use this for initialization
 	void Start () {
