@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Miner : IMachine, MonoBehaviour
+public class Miner : IMachine
 {
 	public bool curPlacing = false;
 
@@ -12,7 +12,9 @@ public class Miner : IMachine, MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		// curPlacing = true;
+
+		// Initialize sources 
 	}
 	
 	// Update is called once per frame

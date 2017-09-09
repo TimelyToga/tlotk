@@ -56,6 +56,7 @@ public class Asteroid2D : MonoBehaviour {
 			GameObject cur = mTiles [a];
 			Vector3 dist = position - cur.transform.position;
 			cur.gameObject.SetActive (dist.magnitude < 300.0f);
+			cur.gameObject.
 		}
 	}
 }

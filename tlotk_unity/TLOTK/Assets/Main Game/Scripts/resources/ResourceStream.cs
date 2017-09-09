@@ -2,7 +2,7 @@
 
 public interface ResourceStream
 {
-	ResourcePack resourceSource();
+	ResourcePack getSourceSample(float amt);
 	void outputResource(ResourcePack rp);
 }
 
