@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class ResourcePack
 {
 	private float totalUnits;
-	private Dictionary<EResource, Resource> resources = new Dictionary<EResource, Resource>();
+	private Dictionary<EResource, Resource> resources;
 
 	public ResourcePack() {
-		
+		resources = new Dictionary<EResource, Resource> ();
 	}
 
 	public void addResource(Resource resource) {
@@ -17,10 +17,10 @@ public class ResourcePack
 	}
 
 	public bool contains(EResource res) {
-		return resources.TryGetValue (res);
+		return resources.ContainsKey (res);
 	}
 
-	public List<EResource> getResourcesKeys() {
+	public Dictionary<EResource, Resource>.KeyCollection getResourcesKeys() {
 		return resources.Keys;
 	}
 
@@ -28,17 +28,28 @@ public class ResourcePack
 		ResourcePack output = new ResourcePack ();
 
 		// For key in keys 
+		var keys = getResourcesKeys();
+		foreach(EResource k in keys) {
+			// Figure out resource proportion
+			Resource r = resources[k];
+			float curAmount = (r.amount / totalUnits) * amount;
 
-		// Figure out resource proportion
-
-		// Extract that resource amount into output
+			// Extract that resource amount into output
+			// Remove --> Add so material is never created 
+			Resource curExtract = new Resource(k, r.remove (curAmount));
+			output.addResource (curExtract);
+		}
+			
 		return output;
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
-		
+	Resource getSpecificSample(EResource type, float amount) {
+		if (contains (type)) {
+			Resource r = resources [type];
+			return r.removeNew(amount);
+		}
+
+		return new Resource(type);
 	}
 }
 
