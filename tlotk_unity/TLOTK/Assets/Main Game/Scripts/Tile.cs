@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : ResourceStream { 
+public class Tile : MonoBehaviour, ResourceStream { 
 
 	public GameObject sprite;
 	private ResourcePack resources;
+	private SpriteRenderer sRenderer;
 
 	// How hard it is to mine
 	private float extractionDiff;
@@ -17,7 +18,7 @@ public class Tile : ResourceStream {
 	}
 
 	void Start() {
-
+		sRenderer = sprite.GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -31,5 +32,11 @@ public class Tile : ResourceStream {
 
 	public void outputResource(ResourcePack rp) {
 		// No-op: you can't add infuse resources into a Tile
+	}
+
+	public void setTileOpacity(float vis) {
+		Color newColor = sRenderer.color;
+		newColor.a = vis;
+		sRenderer.color = newColor;
 	}
 }

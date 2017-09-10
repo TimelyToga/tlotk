@@ -11,6 +11,10 @@ public class Asteroid2D : MonoBehaviour {
 
 	private Vector3 center;
 
+
+	private float FADE_RANGE = 170.0f;
+	private float MAX_RANGE = 300.0f;
+	private float FADE_START;
 	public int WIDTH = 10;
 	public int HEIGHT = 12;
 	public GameObject[] mTiles;
@@ -29,6 +33,7 @@ public class Asteroid2D : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		FADE_START = MAX_RANGE - FADE_RANGE;
 		mTiles = new GameObject[WIDTH * HEIGHT];
 
 		for (int x = 0; x < WIDTH; x++) {
@@ -48,15 +53,23 @@ public class Asteroid2D : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		scan (player.position);
 	}
 
 	void scan(Vector3 position) {
 		for (int a = 0; a < mTiles.Length; a++) {
 			GameObject cur = mTiles [a];
+			Tile tile = cur.GetComponent<Tile> ();
 			Vector3 dist = position - cur.transform.position;
-			cur.gameObject.SetActive (dist.magnitude < 300.0f);
-			cur.gameObject.
+			// cur.gameObject.SetActive (dist.magnitude < MAX_RANGE);
+			if (dist.magnitude < MAX_RANGE) {
+				if (dist.magnitude > FADE_START) {
+					float curOpacity = 1.0f - (dist.magnitude - FADE_START) / FADE_RANGE;
+					tile.setTileOpacity (curOpacity);
+				}
+			} else {
+				tile.setTileOpacity (0.0f);
+			}
 		}
 	}
 }
