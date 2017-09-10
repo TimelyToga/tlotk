@@ -4,9 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 public class TileO : MonoBehaviour
 {
-	[Com(typeof(SpriteRenderer))]
 	public GameObject sprite;
-
 	public GameObject stone;
 	private SpriteRenderer sRenderer;
 
