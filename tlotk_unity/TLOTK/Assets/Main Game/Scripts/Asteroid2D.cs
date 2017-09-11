@@ -12,8 +12,8 @@ public class Asteroid2D : MonoBehaviour {
 	private Vector3 center;
 
 
-	private float FADE_RANGE = 170.0f;
-	private float MAX_RANGE = 300.0f;
+	private float FADE_RANGE = 100.0f;
+	private float MAX_RANGE = 250.0f;
 	private float FADE_START;
 	public int WIDTH = 10;
 	public int HEIGHT = 12;

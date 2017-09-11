@@ -5,11 +5,15 @@ public class FPSCounter : MonoBehaviour
 {
 	float deltaTime = 0.0f;
 	Vector3 pos = Vector3.zero;
+	Vector3 previousPos = Vector3.zero;
+	float speed = 0.0f;
 
 	void Update()
 	{
 		deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+		previousPos = pos;
 		pos = Camera.main.transform.position;
+		speed = (pos - previousPos).magnitude / deltaTime;
 	}
 
 	void OnGUI()
@@ -24,8 +28,7 @@ public class FPSCounter : MonoBehaviour
 		style.normal.textColor = new Color (1.0f, 1.0f, 1.0f, 1.0f);
 		float msec = deltaTime * 1000.0f;
 		float fps = 1.0f / deltaTime;
-		float xPos = pos.x;
-		string text = string.Format("{0:0.0} ms ({1:0.} fps)\n  ({1:0.}, {1:0.})", msec, fps, xPos, pos.y);
+		string text = string.Format("{0:0.0} ms ({1:0.} fps)\n({2:0.}, {3:0.}\n({4:0.0} m/s))", msec, fps, pos.x, pos.y, speed);
 		GUI.Label(rect, text, style);
 	}
 }
