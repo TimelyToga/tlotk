@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class IMachine : MonoBehaviour
+public abstract class IMachine : MonoBehaviour, ResourceStream
 {
-	ResourceStream source;
-	ResourceStream destination;
-
 	public GameObject target;
 }
 
