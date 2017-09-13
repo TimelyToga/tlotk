@@ -8,6 +8,7 @@ public class Asteroid2D : MonoBehaviour {
 	private float[] bounds = {0.4f, 0.3f, 0.27f, 0.03f};
 
 	public Transform player;
+	public float SCALE = 50.0f;
 
 	private Vector3 center;
 
@@ -53,7 +54,7 @@ public class Asteroid2D : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		scan (player.position);
+		// scan (player.position);
 	}
 
 	void scan(Vector3 position) {
@@ -61,7 +62,6 @@ public class Asteroid2D : MonoBehaviour {
 			GameObject cur = mTiles [a];
 			Tile tile = cur.GetComponent<Tile> ();
 			Vector3 dist = position - cur.transform.position;
-			// cur.gameObject.SetActive (dist.magnitude < MAX_RANGE);
 			if (dist.magnitude < MAX_RANGE) {
 				if (dist.magnitude > FADE_START) {
 					float curOpacity = 1.0f - (dist.magnitude - FADE_START) / FADE_RANGE;
@@ -71,5 +71,31 @@ public class Asteroid2D : MonoBehaviour {
 				tile.setTileOpacity (0.0f);
 			}
 		}
+	}
+
+	public GameObject getTileGO(int x, int y) {
+		return mTiles [x + y * WIDTH];
+	}
+
+	public Tile getTile (int x, int y){
+		return getTileGO (x, y).GetComponent<Tile>();
+	}
+
+	public Tile positionToTile(float x, float y) {
+		Vector3 offset = transform.position;
+		x -= offset.x;
+		y -= offset.y;
+
+		int xCoord = ((int) x + 25) / 50;
+		int yCoord = ((int) y + 25) / 50;
+
+		return getTile (xCoord, yCoord);
+	}
+
+	/*
+	 * x & y are the minimum minimum coordinates of the object
+	 */
+	public List<Tile> tilesUnder(float x, float y, float width, float height) {
+
 	}
 }
