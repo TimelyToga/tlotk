@@ -2,6 +2,7 @@ cmake-build-debug/*
 .idea/*
 *.*.swp
 *.o
+.DS_Store
 
 # Unity 
 [Ll]ibrary/
