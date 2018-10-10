@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Miner : IMachine
+public class Miner : IMachine, ResourceStream
 {
 	public bool curPlacing = true;
 	public GameObject asteroid;
@@ -10,11 +10,11 @@ public class Miner : IMachine
 	private Asteroid2D asteroid2D;
 	private MultipleInputStream stream;
 
-	private List<Tile> resourceSources ();
+	private List<Tile> resourceSources;
 
 	void placeAt ()
 	{
-		asteroid2D.positionToTile(
+		asteroid2D.positionToTile (0, 0);
 	}
 
 	// Use this for initialization
@@ -51,12 +51,12 @@ public class Miner : IMachine
 
 	// Override
 
-	override public ResourcePack getSourceSample(float amt) {
-		return MultipleInputStream.getSourceSample (amt);
+	public ResourcePack getSourceSample(float amt) {
+		return stream.getSourceSample (amt);
 	}
 
-	override public void outputResource(ResourcePack rp) {
-		MultipleInputStream.outputResource (rp);
+	public void outputResource(ResourcePack rp) {
+		stream.outputResource (rp);
 	}
 }
 

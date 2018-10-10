@@ -17,7 +17,7 @@ public class MultipleInputStream : ResourceStream
 		streams.Add (r);
 	}
 
-	public ResourceStream remove(ResourceStream r) {
+	public bool remove(ResourceStream r) {
 		return streams.Remove (r);
 	}
 
@@ -34,6 +34,8 @@ public class MultipleInputStream : ResourceStream
 
 			return streams [curStream++].getSourceSample(amt);
 		}
+
+		return null;
 	}
 
 	public void outputResource(ResourcePack rp) {
