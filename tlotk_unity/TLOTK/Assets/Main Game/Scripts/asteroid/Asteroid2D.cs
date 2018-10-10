@@ -96,6 +96,6 @@ public class Asteroid2D : MonoBehaviour {
 	 * x & y are the minimum minimum coordinates of the object
 	 */
 	public List<Tile> tilesUnder(float x, float y, float width, float height) {
-
+		return new List<Tile> ();
 	}
 }
